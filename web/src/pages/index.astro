@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { company } from '../site';
+
+const description =
+  'Natuvea is a design and development studio building end-to-end encrypted messaging infrastructure for developers.';
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: company.name,
+  url: 'https://natuvea.com',
+  logo: 'https://natuvea.com/logo.png',
+  description,
+  email: company.email,
+  foundingDate: company.foundingDate,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: company.address.street,
+    addressLocality: company.address.locality,
+    postalCode: company.address.postcode,
+    addressCountry: company.address.countryCode,
+  },
+};
+---
+
+<BaseLayout
+  title="Natuvea | Design and development studio"
+  description={description}
+  path="/"
+  ogTitle="Natuvea"
+  ogDescription="Thoughtful design and development. Crafted with care, built to last."
+  jsonLd={organization}
+  bodyClass="home"
+>
+  <div class="hero">
+    <div class="content">
+      <img class="logo" src="/logo.png" alt="Natuvea logo">
+      <img class="logo-dark" src="/logo-dark.svg" alt="Natuvea wordmark">
+      <div class="divider" role="separator" aria-hidden="true"></div>
+      <p class="tagline">Thoughtful design and development.<br>Crafted with care, built to last.</p>
+      <p class="philosophy">A small studio in Scotland, currently building<br>end-to-end encrypted messaging infrastructure.</p>
+    </div>
+  </div>
+  <section class="band">
+    <h2>What we make</h2>
+    <p>Natuvea designs and builds its own products. The current one is messaging infrastructure for developers: realtime chat that is end-to-end encrypted by default, with SDKs across five platforms, built and tested against evidence we can show.</p>
+    <div class="band-links">
+      <a href="/product.html">The product</a>
+      <a href="/studio.html">The studio</a>
+      <a href="/journal/">Journal</a>
+    </div>
+  </section>
+  <SiteFooter />
+</BaseLayout>

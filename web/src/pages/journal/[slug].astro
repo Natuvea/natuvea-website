@@ -1,0 +1,27 @@
+---
+import { getCollection, render } from 'astro:content';
+import ProseLayout from '../../layouts/ProseLayout.astro';
+import { formatDate } from '../../site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('journal');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<ProseLayout
+  title={`${post.data.title} | Natuvea`}
+  description={post.data.description}
+  path={`/journal/${post.id}.html`}
+  current="journal"
+  heading={post.data.title}
+  meta={formatDate(post.data.date)}
+  ogTitle={post.data.title}
+  ogDescription={post.data.ogDescription ?? post.data.description}
+  ogType="article"
+>
+  <Content />
+</ProseLayout>

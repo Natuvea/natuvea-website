@@ -1,0 +1,28 @@
+---
+import ProseLayout from '../layouts/ProseLayout.astro';
+import { company } from '../site';
+---
+
+<ProseLayout
+  title="Studio | Natuvea"
+  description="Natuvea Ltd is a design and development studio registered in Scotland, building its own products across physical and digital."
+  path="/studio.html"
+  current="studio"
+  heading="The studio"
+  lede="A small studio that builds its own products."
+  ogDescription="A design and development studio registered in Scotland."
+>
+  <p>Natuvea is a design and development studio working across physical and digital products. We are not an agency: rather than taking client briefs, we choose a problem worth years of attention and build the product ourselves, from the first design conversation to the infrastructure it runs on.</p>
+  <p>The current product is <a href="/product.html">end-to-end encrypted messaging infrastructure</a> for developers. It occupies most of the studio's time, and its build discipline, in which every claim about the system must trace to evidence, has become the way we work on everything.</p>
+
+  <h2>How we work</h2>
+  <p>Slowly, by software standards, and deliberately. We write down non-obvious decisions so future work does not quietly reverse them. We measure before we claim. We prefer boring, well-understood technology at the foundations and spend the novelty budget where it earns its place. When something is not finished, we say so rather than round up.</p>
+
+  <h2>The company</h2>
+  <ul>
+    <li>{company.name}, incorporated in Scotland on 31 October 2024.</li>
+    <li>Company number {company.number}.</li>
+    <li>Registered office: {company.address.street}, {company.address.locality}, {company.address.postcode}, {company.address.country}.</li>
+    <li>Enquiries: <a href={`mailto:${company.email}`}>{company.email}</a>.</li>
+  </ul>
+</ProseLayout>

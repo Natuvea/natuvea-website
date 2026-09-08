@@ -1,0 +1,17 @@
+---
+import { primaryNav, type NavKey } from '../nav';
+
+interface Props {
+  current?: NavKey;
+}
+const { current } = Astro.props;
+---
+
+<header class="site-header">
+  <a class="home-link" href="/" aria-label="Natuvea home"><img src="/logo.png" alt="Natuvea logo"></a>
+  <nav class="site-nav" aria-label="Primary">
+    {primaryNav.map((item) => (
+      <a href={item.href} aria-current={item.key === current ? 'page' : undefined}>{item.label}</a>
+    ))}
+  </nav>
+</header>

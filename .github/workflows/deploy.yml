@@ -17,9 +17,6 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: infr
     steps:
       - uses: actions/checkout@v6
 
@@ -27,16 +24,29 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: infr/package-lock.json
+          cache-dependency-path: |
+            web/package-lock.json
+            infr/package-lock.json
 
-      - name: Install dependencies
+      - name: Install site dependencies
         run: npm ci
+        working-directory: web
 
-      - name: Build
+      - name: Build site
         run: npm run build
+        working-directory: web
 
-      - name: Test
+      - name: Install infrastructure dependencies
+        run: npm ci
+        working-directory: infr
+
+      - name: Build infrastructure
+        run: npm run build
+        working-directory: infr
+
+      - name: Test infrastructure
         run: npm test
+        working-directory: infr
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6
@@ -46,3 +56,4 @@ jobs:
 
       - name: CDK deploy
         run: npx cdk deploy --require-approval never
+        working-directory: infr

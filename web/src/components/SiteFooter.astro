@@ -1,0 +1,16 @@
+---
+import { footerNav } from '../nav';
+---
+
+<footer>
+  &copy; Natuvea Ltd <span id="year"></span> <span>&middot;</span> Company SC827506
+  <div class="footer-nav">
+    {footerNav.map((item, i) => (
+      <>
+        {i > 0 && <span>&middot;</span>}
+        <a href={item.href}>{item.label}</a>
+      </>
+    ))}
+  </div>
+</footer>
+<script is:inline>document.getElementById('year').textContent = new Date().getFullYear();</script>

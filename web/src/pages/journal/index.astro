@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import ProseLayout from '../../layouts/ProseLayout.astro';
+import { formatDate } from '../../site';
+
+const posts = (await getCollection('journal')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime() || a.data.order - b.data.order,
+);
+---
+
+<ProseLayout
+  title="Journal | Natuvea"
+  description="Notes from the build: how Natuvea works, measured and written down."
+  path="/journal/"
+  current="journal"
+  heading="Journal"
+  lede="Notes from the build."
+  ogDescription="Notes from the build."
+>
+  <ul class="journal-list">
+    {posts.map((post) => (
+      <li>
+        <span class="date">{formatDate(post.data.date)}</span>
+        <a href={`/journal/${post.id}.html`}>{post.data.title}</a>
+        <p class="summary">{post.data.summary ?? post.data.description}</p>
+      </li>
+    ))}
+  </ul>
+</ProseLayout>
