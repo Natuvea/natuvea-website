@@ -1,0 +1,36 @@
+---
+import ProseLayout from '../layouts/ProseLayout.astro';
+import { company } from '../site';
+---
+
+<ProseLayout
+  title="Privacy | Natuvea"
+  description="The privacy policy for natuvea.com: what this website collects, what it does not, and how to reach us."
+  path="/privacy.html"
+  heading="Privacy"
+  meta="Last updated 20 July 2026"
+  ogDescription="What this website collects, what it does not, and how to reach us."
+>
+  <p>This policy covers the website natuvea.com, operated by {company.name}, company {company.number}, registered at {company.address.street}, {company.address.locality}, {company.address.postcode}, {company.address.country}. The short version: this site is built to know as little about you as possible.</p>
+
+  <h2>What this site does not do</h2>
+  <ul>
+    <li>No analytics. We do not measure visits, and no analytics script runs on any page.</li>
+    <li>No cookies. The site sets none, and there is nothing to consent to.</li>
+    <li>No accounts, no forms. The site collects nothing you type, because there is nowhere to type it.</li>
+    <li>No advertising or tracking of any kind, first or third party.</li>
+  </ul>
+
+  <h2>What is technically unavoidable</h2>
+  <p>The site is static files served from Amazon Web Services, using S3 storage behind the CloudFront content delivery network, from infrastructure in Europe. Like any web server, AWS processes the IP address and request details of each visit to deliver the pages; we have not enabled access logging on this distribution.</p>
+  <p>Pages load one typeface, Cormorant Garamond, from Google Fonts. Your browser requests the font files from Google's servers, so Google receives the request, including your IP address. Google states that these requests are not used for profiling. We plan to serve the typeface ourselves and remove this third party.</p>
+
+  <h2>If you email us</h2>
+  <p>Writing to <a href={`mailto:${company.email}`}>{company.email}</a> shares whatever your message contains, along with your address. We keep correspondence for as long as it is useful for answering you and running the business, and we do not add you to any list or share your details with anyone.</p>
+
+  <h2>Our product</h2>
+  <p>The messaging infrastructure we build is a separate system with a different posture, described on the <a href="/product.html">product page</a>: it is end-to-end encrypted by default, and its server only ever sees ciphertext. It will carry its own privacy documentation when it is released.</p>
+
+  <h2>Your rights and questions</h2>
+  <p>Under UK data protection law you can ask what personal data we hold about you, ask for it to be corrected or deleted, and complain to the Information Commissioner's Office. For this website the honest answer to the first question will usually be your emails to us and nothing else. Questions about this policy go to <a href={`mailto:${company.email}`}>{company.email}</a>.</p>
+</ProseLayout>

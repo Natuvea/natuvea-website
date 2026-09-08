@@ -1,0 +1,50 @@
+---
+/**
+ * Two-column prose page: sans title (and lede or date) left, serif copy right.
+ * Used by the product, studio, privacy, and journal pages.
+ */
+import BaseLayout from './BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import type { NavKey } from '../nav';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  current?: NavKey;
+  heading: string;
+  /** Italic line under the heading. */
+  lede?: string;
+  /** Date or "Last updated" line under the heading, styled as meta. */
+  meta?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogType?: 'website' | 'article';
+}
+
+const { title, description, path, current, heading, lede, meta, ogTitle, ogDescription, ogType } = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  ogTitle={ogTitle}
+  ogDescription={ogDescription}
+  ogType={ogType}
+  bodyClass="page"
+>
+  <SiteHeader current={current} />
+  <main>
+    <div class="page-head">
+      <h1>{heading}</h1>
+      {lede && <p class="lede">{lede}</p>}
+      {meta && <p class="meta">{meta}</p>}
+    </div>
+    <div class="page-body">
+      <slot />
+    </div>
+  </main>
+  <SiteFooter />
+</BaseLayout>

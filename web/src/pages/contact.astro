@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { company } from '../site';
+---
+
+<BaseLayout
+  title="Contact | Natuvea"
+  description="Contact Natuvea Ltd, a design and development studio working across physical and digital products."
+  path="/contact.html"
+  ogDescription="Contact Natuvea Ltd."
+  bodyClass="home"
+>
+  <SiteHeader current="contact" />
+  <div class="content">
+    <h1 class="page-title">Contact</h1>
+    <div class="divider" role="separator" aria-hidden="true"></div>
+    <div class="contact-details">
+      <div>
+        <p class="label">Email</p>
+        <p class="value"><a href={`mailto:${company.email}`}>{company.email}</a></p>
+      </div>
+      <div>
+        <p class="label">Registered office</p>
+        <p class="value">{company.name}<br>{company.address.street}<br>{company.address.locality}<br>{company.address.postcode}<br>{company.address.country}</p>
+      </div>
+    </div>
+  </div>
+  <SiteFooter />
+</BaseLayout>

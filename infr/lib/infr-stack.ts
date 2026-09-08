@@ -90,9 +90,9 @@ export class InfrStack extends cdk.Stack {
       target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(distribution)),
     });
 
-    // Deploy site contents to S3
+    // Deploy the built site (web/dist, produced by `npm run build` in web/) to S3
     new s3deploy.BucketDeployment(this, 'DeploySite', {
-      sources: [s3deploy.Source.asset(path.join(__dirname, '../../web'))],
+      sources: [s3deploy.Source.asset(path.join(__dirname, '../../web/dist'))],
       destinationBucket: siteBucket,
       distribution,
       distributionPaths: ['/*'],
